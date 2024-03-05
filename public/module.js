@@ -2,7 +2,7 @@ import { ethers } from 'ethers';
 
 let contract = undefined;
 let signer = undefined;
-const contractAddress = "0xab99440f3cdfb954becd01c7dd0a18145f497b96";
+const contractAddress = "0x9fd7999ad25ef9023de85c00782d840e0e2add51";
 const contractABI = [
 	{
 		"inputs": [
@@ -91,6 +91,11 @@ document.getElementById("getQuote").addEventListener("click", async function(){
         const quotes = await contract.getQuote();
 
         let showQuoteElement = document.getElementById("showQuote");
+        
+        if (showQuoteElement) {
+            showQuoteElement.innerHTML = "";
+        }
+
 
         for (let i = 0; i < quotes.length; i++) {
             let aside = document.createElement("aside");
@@ -116,14 +121,14 @@ document.getElementById("getQuote").addEventListener("click", async function(){
     };
 });
 
-document.getElementById("setNote").addEventListener("click", async function(){
+document.getElementById("setQuote").addEventListener("click", async function(){
     try {
         console.log("On process. Make sure you have balance on Sepolia. If not, let's get faucet from sepoliafaucet.com.");
-        const note = document.getElementById("enterNote").value;
-        await contract.setNote(note);
-        setTimeout(() => alert("Let's reload page and click button \"Click it\" until the text changes."), 13000);
-        console.log("Wait...");
-        
+        const textQuote = document.getElementById("enterQuote").value;
+        const authorQuote = document.getElementById("enterAuthor").value;
+
+        await contract.setQuote(textQuote,authorQuote);
+        setTimeout(() => alert("Let's reload page and click button \"Click it\" until the text changes."), 10000);
     } catch (error) {
         console.error(error);
     };
