@@ -1,6 +1,6 @@
 {
   "name": "quoteforeveryone",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Everyone can send their quote for other people around the world.",
   "main": "index.js",
   "scripts": {
